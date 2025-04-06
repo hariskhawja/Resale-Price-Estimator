@@ -3,6 +3,7 @@ from flask_cors import CORS
 from dotenv import load_dotenv
 import os
 from supabase import create_client, Client
+from depreciation import depreciator
 
 load_dotenv('../.env')
 
@@ -14,6 +15,7 @@ supabase: Client = create_client(SUPABASE_URL, SUPABASE_API_KEY)
 
 app = Flask(__name__)
 CORS(app, origins=["https://resale-price-estimator.vercel.app"])
+# CORS(app, origins=["http://localhost:3000", "localhost:3000"])
 
 '''
 type ClothingInput = {
@@ -50,7 +52,7 @@ def model_post():
         "colour": newClothing["colour"],
         "size": newClothing["size"],
         "initial_price": newClothing["initial_price"],
-        "current_price": newClothing["initial_price"]*((1-0.01)**newClothing["age_in_months"]),
+        "current_price": depreciator(newClothing["initial_price"], newClothing["brand"], newClothing["category"], newClothing["condition"], newClothing["material"], newClothing["rarity"], newClothing["age_in_months"]),
         "age_in_months": newClothing["age_in_months"],
         "condition": newClothing["condition"],
         "user": newClothing["user"],
@@ -73,6 +75,10 @@ def model_post():
     return([allData.data, yourData.data])
 
 if __name__ == '__main__':
+    # Prod
     HOST = "0.0.0.0"
     PORT = int(os.getenv("PORT", 10000))
     app.run(host=HOST, port=PORT, debug=False)
+
+    # Local
+    # app.run(port=PORT, debug=True)

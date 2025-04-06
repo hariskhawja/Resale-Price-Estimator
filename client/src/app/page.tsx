@@ -12,7 +12,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { ArrowDownIcon, ArrowUpIcon, DollarSignIcon, ShirtIcon, CheckCircle2, Users, User, ArrowRightIcon } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
-type Category = "T-Shirt" | "Jacket" | "Long-Sleeves" | "Jeans" | "Shorts" | "Sweat Pants" | "Hoodie"
+type Category = "T-Shirt" | "Jacket" | "Long-Sleeves" | "Jeans" | "Shorts" | "Sweatpants" | "Hoodie" | "Dress" | "Sweatshirt" | "Polo"
 type Size = "XS" | "S" | "M" | "L" | "XL"
 type Condition = "Excellent" | "Good" | "Decent" | "Poor"
 type Rarity = "General Release" | "Limited Edition" | "Collaboration" | "Vintage"
@@ -109,6 +109,7 @@ export default function Home() {
     const fetchData = async () => {
       try {
         const response = await fetch("https://resale-price-estimator.onrender.com/api/model")
+        // const response = await fetch("http://127.0.0.1:5000/api/model")
         const result: ClothingOutput[][] = await response.json()
         const [ allClothing, yourClothing ] = result
         setData(allClothing) // All data
@@ -135,6 +136,13 @@ export default function Home() {
         },
         body: JSON.stringify(newClothing),
       })
+      // const response = await fetch("http://127.0.0.1:5000/api/model", {
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      //   body: JSON.stringify(newClothing),
+      // })
 
       if (!response.ok) {
         throw new Error("Failed to send data")
@@ -373,8 +381,8 @@ export default function Home() {
                           <SelectValue placeholder="Select category" />
                         </SelectTrigger>
                         <SelectContent>
-                          {["T-Shirt", "Jacket", "Long-Sleeves", "Hoodie", 
-                          "Jeans", "Shorts", "Sweat Pants"
+                          {["T-Shirt", "Jacket", "Long-Sleeves", "Hoodie", "Sweatshirt", "Polo", "Dress",
+                          "Jeans", "Shorts", "Sweatpants"
                           ].map((article, index) => (
                             <SelectItem key={index} value={article}>{article}</SelectItem>
                           ))}

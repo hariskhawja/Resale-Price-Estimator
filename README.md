@@ -82,4 +82,4 @@ npm run dev
 ```
 
 ## Demo Video
-
+Google Drive: https://drive.google.com/file/d/1vkQzLo9w7brunKz4KqIpdnexIBDubJ1f/view?usp=sharing

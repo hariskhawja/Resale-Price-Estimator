@@ -13,7 +13,7 @@ SUPABASE_API_KEY = os.getenv("SUPABASE_API_KEY")
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_API_KEY)
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://resale-price-estimator.vercel.app"])
 
 '''
 type ClothingInput = {

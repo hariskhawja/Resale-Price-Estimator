@@ -73,4 +73,4 @@ def model_post():
     return([allData.data, yourData.data])
 
 if __name__ == '__main__':
-    app.run(port=PORT, debug=True)
+    app.run(port=PORT, debug=False)

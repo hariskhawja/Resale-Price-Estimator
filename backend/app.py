@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 import os
 from supabase import create_client, Client
 
-load_dotenv()
+load_dotenv('../.env')
 
 FLASK_PORT = os.getenv('FLASK_PORT')
 SUPABASE_URL = os.getenv("SUPABASE_URL")

@@ -509,7 +509,7 @@ export default function Home() {
                       <Slider
                         id="initial_price"
                         min={1}
-                        max={500}
+                        max={1200}
                         step={1}
                         value={[formData.initial_price]}
                         onValueChange={(value) => handleInputChange("initial_price", value[0])}
@@ -523,7 +523,7 @@ export default function Home() {
                         id="age_in_months"
                         type="number"
                         min={0}
-                        value={formData.age_in_months}
+                        value={formData.age_in_months.toString()}
                         onChange={(e) => handleInputChange("age_in_months", Number.parseInt(e.target.value) || 0)}
                         placeholder="Enter months"
                       />

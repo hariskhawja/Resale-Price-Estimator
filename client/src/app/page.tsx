@@ -353,7 +353,7 @@ export default function Home() {
           </TabsList>
 
           <TabsContent value="form">
-            <Card className="mb-8 border-gray-200 shadow-sm pt-0">
+            <Card className="mb-8 border-gray-200 shadow-sm pt-0 hover:scale-101 hover:shadow-2xl transition-all duration-300 ease-in-out">
               <CardHeader className="bg-slate-900 text-gray-200 rounded-t-xl py-4">
                 <CardTitle>Item Details</CardTitle>
                 <CardDescription className="text-gray-400">
@@ -551,7 +551,7 @@ export default function Home() {
             {lastSubmitted && (
               <div ref={lastSubmittedRef}>
                 <h2 className="text-2xl font-semibold mb-4 text-gray-800 text-center">Your Latest Submission</h2>
-                <Card className="overflow-hidden mb-8 border-gray-200 shadow-md p-0">
+                <Card className="overflow-hidden mb-8 border-gray-200 shadow-md p-0 hover:scale-101 hover:shadow-2xl transition-all duration-300 ease-in-out">
                   <CardHeader className="bg-slate-900 pb-4 border-b text-gray-200">
                     <div className="flex justify-between items-start pt-8">
                       <div>
@@ -614,31 +614,11 @@ export default function Home() {
                           %
                         </p>
                       </div>
-                      <div>
-                          <p className="text-sm text-gray-500 mb-1">Material</p>
-                          <p className="text-base">
-                            {lastSubmitted.material}
-                          </p>
-                        </div>
 
-                        <div>
-                          <p className="text-sm text-gray-500 mb-1">Colour</p>
-                          <p className="text-base">
-                            {lastSubmitted.colour}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-gray-500 mb-1">Size</p>
-                          <p className="text-base">
-                            {lastSubmitted.size}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="text-sm text-gray-500 mb-1">Fit</p>
-                          <p className="text-base">
-                            {lastSubmitted.fit}
-                          </p>
-                        </div>
+                        <ItemStatsDiv label={"Material"} value={lastSubmitted.material} />
+                        <ItemStatsDiv label={"Colour"} value={lastSubmitted.colour} />
+                        <ItemStatsDiv label={"Size"} value={lastSubmitted.size} />
+                        <ItemStatsDiv label={"Fit"} value={lastSubmitted.fit} />
                     </div>
                   </CardContent>
                   <CardFooter className="bg-slate-900 border-t py-3 pb-6">

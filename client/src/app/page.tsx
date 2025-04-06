@@ -559,7 +559,7 @@ export default function Home() {
                           <ShirtIcon className="h-6 w-6" />
                           {lastSubmitted.category}
                         </CardTitle>
-                        <CardDescription className="mt-1 text-base text-gray-200">
+                        <CardDescription className="whitespace-nowrap mt-1 text-base text-gray-200">
                           {lastSubmitted.brand} · {lastSubmitted.rarity}
                         </CardDescription>
                       </div>
@@ -656,7 +656,7 @@ export default function Home() {
                             <ShirtIcon className="h-5 w-5" />
                             {item.category}
                           </CardTitle>
-                          <CardDescription className="mt-1 text-gray-200">
+                          <CardDescription className="whitespace-nowrap mt-1 text-gray-200">
                             {item.brand} · {item.rarity}
                           </CardDescription>
                         </div>

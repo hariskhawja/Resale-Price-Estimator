@@ -29,7 +29,7 @@ Link: https://resale-price-estimator.vercel.app/
   - Dictionaries store common or constrained clothing properties
   - Each clothing property has several dictionaries of varying factor scores that uniquely adjust the new resell value (e.g. luxury brands have a high factor, fast-fashion brands have a low factor)
   - Factors were derived from https://zenodo.org/records/8386668 and https://www.kaggle.com/c/mercari-price-suggestion-challenge/data
-  - Final function to estimate current market value: `Market Value = Initial_Price((Brand_Factor)(Category_Factor)(Condition_Factor)(Material_Factor)(Rarity_Factor)**(Age_in_Months/12))
+  - Final function to estimate current market value: `Market Value = Initial_Price((Brand_Factor)(Category_Factor)(Condition_Factor)(Material_Factor)(Rarity_Factor)**(Age_in_Months/12))`
   
 ## Prerequisites
 

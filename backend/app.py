@@ -6,7 +6,7 @@ from supabase import create_client, Client
 
 load_dotenv('../.env')
 
-FLASK_PORT = os.getenv('FLASK_PORT')
+PORT = os.getenv('PORT')
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_API_KEY = os.getenv("SUPABASE_API_KEY")
 
@@ -73,4 +73,4 @@ def model_post():
     return([allData.data, yourData.data])
 
 if __name__ == '__main__':
-    app.run(port=FLASK_PORT, debug=True)
+    app.run(port=PORT, debug=True)

@@ -72,7 +72,7 @@ def model_post():
         messages=[
             {"role": "system", "content": "Given the following properties of an article of clothing, give a sentence describing APPROXIMATELY how much YOU would think you could resell it for. Give another sentence"
             "explaining your reasoning (does not need to be accurate). Then one sentence to express your own opinion on the estimated current market price calculated. Even though this is your opinion, personal pronouns like 'I' and 'my' are completely unacceptable and forbidden."},
-            {"role": "user", "content": f"Category: {clothingToInsert["category"]}, Colour: {clothingToInsert["colour"]}, Size: {clothingToInsert["size"]}, Age in Months: {clothingToInsert["age_in_months"]}, Condition: {clothingToInsert["condition"]}, Brand: {clothingToInsert["brand"]}, Rarity: {clothingToInsert["rarity"]}, Fit: {clothingToInsert["fit"]}, Material: {clothingToInsert["material"]}, Initial Price: {clothingToInsert["initial_price"]}, Estimated Current Market Price: {clothingToInsert["current_price"]}"}
+            {"role": "user", "content": f"Category: {clothingToInsert['category']}, Colour: {clothingToInsert['colour']}, Size: {clothingToInsert['size']}, Age in Months: {clothingToInsert['age_in_months']}, Condition: {clothingToInsert['condition']}, Brand: {clothingToInsert['brand']}, Rarity: {clothingToInsert['rarity']}, Fit: {clothingToInsert['fit']}, Material: {clothingToInsert['material']}, Initial Price: {clothingToInsert['initial_price']}, Estimated Current Market Price: {clothingToInsert['current_price']}"}
         ]
     )
 

@@ -9,7 +9,7 @@ import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Slider } from "@/components/ui/slider"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { ArrowDownIcon, ArrowUpIcon, DollarSignIcon, ShirtIcon, CheckCircle2, Users, User, ArrowRightIcon } from "lucide-react"
+import { ArrowDownIcon, ArrowUpIcon, DollarSignIcon, ShirtIcon, CheckCircle2, Users, User, ArrowRightIcon, Bot } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
 
 type Category = "T-Shirt" | "Jacket" | "Long-Sleeves" | "Jeans" | "Shorts" | "Sweatpants" | "Hoodie" | "Dress" | "Sweatshirt" | "Polo"
@@ -83,6 +83,8 @@ export default function Home() {
 
   const [data, setData] = useState<ClothingOutput[] | []>([]) // All data
   const [yourData, setYourData] = useState<ClothingOutput[] | []>([]) // Your data
+  const [gptData, setGptData] = useState<string>("") // GPT data
+
   const [isLoading, setIsLoading] = useState(true)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [showSuccess, setShowSuccess] = useState(false)
@@ -128,6 +130,7 @@ export default function Home() {
   const submitClothing = async (newClothing: ClothingInput) => {
     try {
       setIsSubmitting(true)
+      type ClothingAPIResponse = [ClothingOutput[], ClothingOutput[], string]
       newClothing["user"] = yourName
       const response = await fetch("https://resale-price-estimator.onrender.com/api/model", {
         method: "POST",
@@ -148,11 +151,12 @@ export default function Home() {
         throw new Error("Failed to send data")
       }
 
-      const result: ClothingOutput[][] = await response.json()
-      const [ allClothing, yourClothing ] = result
+      const result: ClothingAPIResponse = await response.json()
+      const [ allClothing, yourClothing, gptClothing ] = result
       setData(allClothing) // All data
       setYourData(yourClothing) // Your data
-
+      setGptData(gptClothing) // GPT data
+      
       // Set the last submitted item (assuming the newest item is the first in the array)
       if (yourClothing.length > 0) {
         setLastSubmitted(yourClothing[yourClothing.length-1])
@@ -341,7 +345,7 @@ export default function Home() {
 
   return (
     <motion.div
-    className="min-h-screen bg-gray-50"
+    className="min-h-screen bg-gray-50 "
     variants={containerVariants}
     initial="hidden"
     animate="visible"
@@ -628,6 +632,13 @@ export default function Home() {
                         <ItemStatsDiv label={"Size"} value={lastSubmitted.size} />
                         <ItemStatsDiv label={"Fit"} value={lastSubmitted.fit} />
                     </div>
+                  </CardContent>
+                  <CardContent>
+                    <span className="flex gap-3">
+                      <Bot className="scale-101 mt-1 text-purple-700" />
+                      <h1 className="text-2xl font-semibold flex items-center text-purple-700">AI Resale Insider</h1>
+                    </span>
+                    <p className="mt-2 text-lg">{gptData}</p>
                   </CardContent>
                   <CardFooter className="bg-slate-900 border-t py-3 pb-6">
                     <p className="text-sm text-gray-200 flex items-center">

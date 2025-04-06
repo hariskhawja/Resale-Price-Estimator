@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import os
 from supabase import create_client, Client
 from depreciation import depreciator
+from openai import OpenAI
 
 load_dotenv('../.env')
 
@@ -17,16 +18,10 @@ app = Flask(__name__)
 CORS(app, origins=["https://resale-price-estimator.vercel.app"])
 # CORS(app, origins=["http://localhost:3000", "localhost:3000"])
 
-'''
-type ClothingInput = {
-  category: Category,
-  colour: string,
-  size: Size,
-  initial_price: number,
-  time_since_purchase: number,
-  condition: Condition
-}
-'''
+client = OpenAI(
+    api_key=os.environ.get('OPENAI_API_KEY')
+)
+
 user = ""
 
 @app.route('/api', methods=['GET'])
@@ -72,7 +67,16 @@ def model_post():
     allData = supabase.table("clothing").select("*").execute()
     yourData = supabase.table("clothing").select("*").eq("user", user).execute()
 
-    return([allData.data, yourData.data])
+    gptResponse = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "system", "content": "Given the following properties of an article of clothing, give a sentence describing APPROXIMATELY how much YOU would think you could resell it for. Give another sentence"
+            "explaining your reasoning (does not need to be accurate). Then one sentence to express your own opinion on the estimated current market price calculated. Even though this is your opinion, personal pronouns like 'I' and 'my' are completely unacceptable and forbidden."},
+            {"role": "user", "content": f"Category: {clothingToInsert["category"]}, Colour: {clothingToInsert["colour"]}, Size: {clothingToInsert["size"]}, Age in Months: {clothingToInsert["age_in_months"]}, Condition: {clothingToInsert["condition"]}, Brand: {clothingToInsert["brand"]}, Rarity: {clothingToInsert["rarity"]}, Fit: {clothingToInsert["fit"]}, Material: {clothingToInsert["material"]}, Initial Price: {clothingToInsert["initial_price"]}, Estimated Current Market Price: {clothingToInsert["current_price"]}"}
+        ]
+    )
+
+    return([allData.data, yourData.data, gptResponse.choices[0].message.content])
 
 if __name__ == '__main__':
     # Prod

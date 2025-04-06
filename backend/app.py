@@ -75,4 +75,4 @@ def model_post():
 if __name__ == '__main__':
     HOST = "0.0.0.0"
     PORT = int(os.getenv("PORT", 10000))
-    app.run(host=HOST, port=PORT, debug=True)
+    app.run(host=HOST, port=PORT, debug=False)

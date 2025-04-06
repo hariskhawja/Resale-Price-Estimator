@@ -108,7 +108,7 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/api/model")
+        const response = await fetch("https://resale-price-estimator.onrender.com/api/model")
         const result: ClothingOutput[][] = await response.json()
         const [ allClothing, yourClothing ] = result
         setData(allClothing) // All data
@@ -128,7 +128,7 @@ export default function Home() {
     try {
       setIsSubmitting(true)
       newClothing["user"] = yourName
-      const response = await fetch("http://127.0.0.1:5000/api/model", {
+      const response = await fetch("https://resale-price-estimator.onrender.com/api/model", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -564,7 +564,7 @@ export default function Home() {
                         </CardDescription>
                       </div>
                       <span
-                        className={`px-3 py-1 rounded-full text-md font-medium ${getConditionColour(lastSubmitted.condition)} bg-opacity-10 text-white`}
+                        className={`whitespace-nowrap px-3 py-1 rounded-full text-md font-medium ${getConditionColour(lastSubmitted.condition)} bg-opacity-10 text-white`}
                       >
                         {lastSubmitted.condition} Condition
                       </span>
@@ -661,7 +661,7 @@ export default function Home() {
                           </CardDescription>
                         </div>
                         <span
-                          className={`px-2 py-1 mt-4 rounded-full text-xs font-medium ${getConditionColour(item.condition)} bg-opacity-10 text-white`}
+                          className={`whitespace-nowrap px-2 py-1 mt-4 rounded-full text-xs font-medium ${getConditionColour(item.condition)} bg-opacity-10 text-white`}
                         >
                           {item.condition} Condition
                         </span>
@@ -750,7 +750,7 @@ export default function Home() {
                           </CardDescription>
                         </div>
                         <span
-                          className={`px-2 py-1 mt-4 rounded-full text-xs font-medium ${getConditionColour(item.condition)} bg-opacity-10 text-white`}
+                          className={`whitespace-nowrap px-2 py-1 mt-4 rounded-full text-xs font-medium ${getConditionColour(item.condition)} bg-opacity-10 text-white`}
                         >
                           {item.condition} Condition
                         </span>

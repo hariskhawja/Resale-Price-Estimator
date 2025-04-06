@@ -6,7 +6,7 @@ Welcome to the **Global Clothing Value Estimator**! This is a full-stack web app
 Link: https://resale-price-estimator.vercel.app/
 
 ## Features
-- **User-Driven:** Jump right in with a desired username, see your past inquiries, and automatically post market value updates to the global community
+- **User-Driven:** Jump in with a desired username, see your past inquiries, and automatically post market value updates to the global community
 - **Multi-Variable Input:** Provide basic to intricate details regarding your clothing article for a more unique and precise estimate
 - **Advanced Market Value Estimation:** Current market prices calculated using a custom multi-variable Declining Balance Model
 - **AI/ML Insider Analytics:** Users receive qualitative analysis on their clothes from OpenAI's GPT-3.5-turbo model to estimate prices

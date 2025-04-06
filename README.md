@@ -26,7 +26,7 @@ Link: https://resale-price-estimator.vercel.app/
 - Supabase database used to save clothing inquiries on the cloud
 - OpenAI's GPT-3.5-turbo used to provide qualitative analysis on a user's clothing article to produce estimates
 - Custom multi-variable Declining Balance Model used to estimate current market value of clothing article based on user-inputted details (e.g. brand, material, age, etc.)
-  - Dictionaries were made to store common or constrained clothing properties
+  - Dictionaries store common or constrained clothing properties
   - Each clothing property has several dictionaries of varying factor scores that uniquely adjust the new resell value (e.g. luxury brands have a high factor, fast-fashion brands have a low factor)
   - Factors were derived from https://zenodo.org/records/8386668 and https://www.kaggle.com/c/mercari-price-suggestion-challenge/data
   - Final function to estimate current market value: `Market Value = Initial_Price((Brand_Factor)(Category_Factor)(Condition_Factor)(Material_Factor)(Rarity_Factor)**(Age_in_Months/12))
